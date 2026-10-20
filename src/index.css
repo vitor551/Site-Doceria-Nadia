@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Tokens espelhados de DESIGN.md (v2) — usar via classes Tailwind sempre que possível */
+:root {
+  --color-lavender: #C2B2D1;
+  --color-chalk: #F2F0EF;
+  --color-smoky: #8E6998;
+  --color-lime: #CFDFB3;
+  --color-plum: #4C2650;
+  --color-plum-deep: #2D1B31;
+  --color-paper: #FAF9F5;
+  --color-ink: #2D1B31;
+  --color-ink-muted: #6B5E70;
+
+  --font-display: 'Courgette', cursive;
+  --font-body: 'Open Sans', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem; /* compensa o header fixo nas âncoras */
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-lavender/50 text-plum-deep;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-plum;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[11px] font-semibold uppercase tracking-[0.18em] text-moss;
+  }
+
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-6 py-3
+      font-sans text-xs font-semibold uppercase tracking-wider
+      transition duration-200 ease-out;
+  }
+
+  .btn-primary {
+    @apply btn bg-plum text-paper shadow-soft hover:-translate-y-0.5 hover:bg-plum-hover hover:shadow-lift;
+  }
+
+  .btn-secondary {
+    @apply btn border border-plum/25 bg-white text-plum hover:border-plum hover:bg-lavender-soft;
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded-full bg-lime px-3 py-1
+      font-sans text-[11px] font-semibold uppercase tracking-wider text-plum-deep;
+  }
+}
